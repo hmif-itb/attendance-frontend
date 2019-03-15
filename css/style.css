@@ -1,0 +1,152 @@
+:root {
+  --bg-color:#212121;
+  --primary-color:#F5C936;
+  --modal-color:#DFDFDF;
+  --modal-color-fail:#E35744;
+  --modal-button-color:#FFFFFF;
+  --modal-button-hover:#EEEEEE;
+}
+
+body{
+  background: var(--bg-color);
+  font-family: 'Roboto', sans-serif;
+  color: var(--primary-color);
+  width:100%;
+  height:100%;
+  margin:0px;
+}
+
+.container{
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.button{
+  cursor: pointer;
+  margin: 20px;
+  padding: 10px;
+  border: 6px solid var(--primary-color);
+  transition: all 0.3s ease-out;
+}
+
+.button:hover{
+  background: var(--primary-color);
+  color: var(--bg-color);
+  font-weight: bold;
+}
+
+.input-description{
+  font-size: 1.5em;
+  text-align: center;
+}
+
+input{
+  font-size: 2em;
+}
+
+.logo{
+  position: absolute;
+  left: 10px;
+  right: 10px;
+}
+
+.logo p{
+  font-weight: 100;
+}
+
+.logo b{
+  font-weight: 900;
+}
+
+
+
+.title{
+  font-size: 3em;
+}
+
+.logo{
+  width:300px;
+}
+
+#nimCek{
+  font-size: 2em;
+}
+
+.modal-load{
+  min-width: 200px;
+}
+
+.modal{
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 50vmin;
+  margin-left: -25vmin;
+  transform: translateY(-50%) scaleY(0);
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  align-items: center;
+  flex-direction: column;
+
+  background-color: var(--modal-color);
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: all 0.15s ease-out;
+
+  border: 10px solid #EFA74E;
+  outline: 20px solid var(--modal-color);
+}
+
+.modal.modal-open{
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(-50%) scaleY(1);
+  transition: all 0.15s ease-out;
+}
+
+.modal-title{
+  text-align: center;
+  margin: 0px;
+  font-size: 3em;
+}
+
+.modal-button{
+  margin-top: 10px;
+  background-color: var(--modal-button-color);
+  font-size: 1em;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  transition: background-color 0.1s ease-out;
+}
+
+.modal-button:hover{
+  background-color: var(--modal-button-hover);
+}
+
+#modal-fail{
+  background-color: var(--modal-color-fail);
+  color:white;
+}
+
+#modal-fail .modal-button{
+  color:var(--modal-color-fail);
+}
+
+.button-holder{
+  display: flex;
+  flex-direction: row;
+  width:100%;
+  max-width: 200px;
+  justify-content: space-evenly;
+}
