@@ -11,7 +11,7 @@
   </div>
   <div class="container">
     <h1 id="eventName" class="title">Pendaftaran</h1>
-    <form onsubmit="check();return false;">
+    <form>
       <p class="input-description">Masukkan NIM</p>
       <input id="nimInput" type="number"/>
     </form>
@@ -22,7 +22,7 @@
     <h1 class="modal-title">Cek</h1>
     <p id="nameCheck"></p>
     <div class="button-holder">
-      <a onclick="closeDialog('cek');" class="button">Salah</a>
+      <a onclick="closeDialog('cek');enterAction=()=>{check();};" class="button">Salah</a>
       <a onclick="send();" id="button-send" class="button">Benar</a>
     </div>
   </div>
