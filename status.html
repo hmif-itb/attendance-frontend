@@ -13,12 +13,22 @@
     <h1 id="eventName" class="font-3">Status</h1>
     <h2>Jumlah peserta</h2>
     <p class="font-2 no-margin"><b id="attendCount"></b></p>
-  </div>  
+    <h2>Selamat datang</h2>
+    <p class="font-2 no-margin"><b id="lastAttend"></b></p>
+    <br/>
+    <a class="button" onclick="viewAll();">Lihat semua</a>
+  </div>
 
   <div id="modal-notice" class="modal">
     <h1 class="modal-title" id="noticeText"></h1>
     <a onclick="closeDialog('notice');" id="noticeBtn" class="button">Oke</a>
   </div>
+
+  <div id="modal-list" class="modal">
+      <h1 class="modal-title">Daftar nama</h1>
+      <div class="text-center" id="listName"></div>
+      <a onclick="closeDialog('list');" id="noticeBtn" class="button">Tutup</a>
+    </div>
   
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" defer></script>
   <script src="js/status.js" defer></script>
