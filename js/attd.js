@@ -7,14 +7,14 @@ const NIM_REGEX = /(135|182)[0-9]{5}/;
 function send(){
   closeDialog('cek');
   notice('Loading','',false);
-
+  
   let nimData =  $('#nimInput').val();
   let attendUrl = serverUrl+'/events/'+eventId+'/attend';
-
+  
   let postData = {
     nim: nimData
   }
-
+  
   fetch(attendUrl,{
     method: 'POST',
     headers: {
@@ -31,19 +31,19 @@ function send(){
       setTimeout(()=>{notice(content.detail,'OK',true);},50);
     }
   }).catch((err)=>{
-      console.error(err);
-      alert(err);
+    console.error(err);
+    alert(err);
   });
 }
 
 function check(){
   let nimData = $('#nimInput').val();
-
+  
   if(NIM_REGEX.test(nimData)){
     notice('Loading','',false);
-
+    
     let nimUrl = serverUrl + '/students/'+nimData;
-
+    
     fetch(nimUrl,{
       method: 'GET',
       headers: {
@@ -61,12 +61,12 @@ function check(){
         }
       });
     }).catch((err)=>{
-        console.error(err);
-        alert(err);
+      console.error(err);
+      alert(err);
     });
-
-
-
+    
+    
+    
   }else {
     notice('Invalid NIM','OK',true);
   };
@@ -75,11 +75,31 @@ function check(){
 $( document ).ready(function() {
   if(localStorage.getItem('serverUrl')){
     serverUrl = localStorage.getItem('serverUrl');
-
+    
     if(sessionStorage.getItem('jwt')){
       jwtKey = sessionStorage.getItem('jwt');
       if(window.location.hash.length==21){
         eventId = window.location.hash.substr(1,20);
+
+        let eventsUrl = serverUrl + '/events/'+eventId;
+        
+        fetch(eventsUrl,{
+          method: 'GET',
+          headers: {
+            'Authorization': 'Bearer '+jwtKey, 
+            'Content-Type':'application/JSON'
+          }
+        }).then((val)=>{
+          val.json().then((content)=>{
+            if(val.status==200){
+              $('#eventName').text('Pendaftaran '+content.name);
+            }
+          });
+        }).catch((err)=>{
+          console.error(err);
+          alert(err);
+        });
+        
       }else{
         window.location.replace('/event.html');
       }
