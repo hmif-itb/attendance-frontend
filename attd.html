@@ -10,17 +10,17 @@
     <p><b>#HMIF</b>TECH</p>
   </div>
   <div class="container">
-    <h1 id="eventName" class="title">Pendaftaran</h1>
+    <h1 id="eventName" class="font-3">Pendaftaran</h1>
     <form>
-      <p class="input-description">Masukkan NIM</p>
-      <input id="nimInput" type="number"/>
+      <p class="font-1-5 text-center">Masukkan NIM</p>
+      <input class="font-2" id="nimInput" type="number"/>
     </form>
     <a onclick="check();" class="button">Daftar</a>
   </div>
 
   <div id="modal-cek" class="modal">
     <h1 class="modal-title">Cek</h1>
-    <p id="nameCheck"></p>
+    <p id="nameCheck" class="font-2"></p>
     <div class="button-holder">
       <a onclick="closeDialog('cek');enterAction=()=>{check();};" class="button">Salah</a>
       <a onclick="send();" id="button-send" class="button">Benar</a>

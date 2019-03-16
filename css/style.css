@@ -37,11 +37,26 @@ body{
 
 .input-description{
   font-size: 1.5em;
-  text-align: center;
 }
 
-input{
+.text-center{
+  text-align: center;  
+}
+
+.font-1-5{
+  font-size: 1.5em;
+}
+
+.font-2{
   font-size: 2em;
+}
+
+.font-3{
+  font-size: 3em;
+}
+
+.no-margin{
+  margin: 0px;
 }
 
 .logo{
@@ -56,14 +71,6 @@ input{
 
 .logo b{
   font-weight: 900;
-}
-
-.title{
-  font-size: 3em;
-}
-
-#nameCheck{
-  font-size: 2em;
 }
 
 .modal-load{
