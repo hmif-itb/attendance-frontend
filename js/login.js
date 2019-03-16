@@ -2,12 +2,12 @@ function login(){
     let loginUrl = localStorage.getItem('serverUrl');
     if(loginUrl){
         loginUrl += '/auth/login';
-
+        
         let postData = {
             username: $('#username').val(),
             password: $('#userPass').val()
         };
-
+        
         fetch(loginUrl,{
             method: 'POST',
             headers: {
@@ -28,5 +28,10 @@ function login(){
     }else{
         alert('Error, URL not supplied');
     }
-
 }
+
+$( document ).ready(function() {
+    if(sessionStorage.getItem('jwt')){
+        window.location.replace('event.html');
+    }
+});
