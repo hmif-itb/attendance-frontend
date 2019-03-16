@@ -62,10 +62,6 @@ input{
   font-size: 3em;
 }
 
-.logo{
-  width:300px;
-}
-
 #nameCheck{
   font-size: 2em;
 }
@@ -112,29 +108,6 @@ input{
   text-align: center;
   margin: 0px;
   font-size: 3em;
-}
-
-.modal-button{
-  margin-top: 10px;
-  background-color: var(--modal-button-color);
-  font-size: 1em;
-  padding: 15px;
-  text-align: center;
-  border-radius: 10px;
-  transition: background-color 0.1s ease-out;
-}
-
-.modal-button:hover{
-  background-color: var(--modal-button-hover);
-}
-
-#modal-fail{
-  background-color: var(--modal-color-fail);
-  color:white;
-}
-
-#modal-fail .modal-button{
-  color:var(--modal-color-fail);
 }
 
 .button-holder{
