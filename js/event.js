@@ -5,6 +5,13 @@ function eventPick(){
     }
 }
 
+function eventStatus(){
+    let eventId = $('#eventId').val();
+    if(eventId){
+        window.location.replace('status.html#'+eventId);
+    }
+}
+
 
 $( document ).ready(function() {
     let jwtKey = sessionStorage.getItem('jwt');
