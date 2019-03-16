@@ -1,0 +1,39 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <link rel="shortcut icon" type="image/ico" href="img/favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,900" rel="stylesheet">
+  <title>Web Registrasi</title>
+</head>
+<body>
+  <div class="logo">
+    <p><b>#HMIF</b>TECH</p>
+  </div>
+  <div class="container">
+    <h1 class="title">Pendaftaran</h1>
+    <form onsubmit="check();return false;">
+      <p class="input-description">Masukkan NIM</p>
+      <input id="nimInput" type="number"/>
+    </form>
+    <a onclick="check();" class="button">Daftar</a>
+      
+  </div>
+
+  <div id="modal-cek" class="modal">
+    <h1 class="modal-title">Cek</h1>
+    <p id="nameCheck"></p>
+    <div class="button-holder">
+      <a onclick="closeDialog('cek');" class="button">Salah</a>
+      <a onclick="send();" id="button-send" class="button">Benar</a>
+    </div>
+  </div>
+
+  <div id="modal-notice" class="modal">
+    <h1 class="modal-title" id="noticeText"></h1>
+    <a onclick="closeDialog('notice');" id="noticeBtn" class="button">Oke</a>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" defer></script>
+  <script src="js/attd.js" defer></script>
+</body>
+</html>

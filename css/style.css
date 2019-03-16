@@ -1,10 +1,6 @@
 :root {
   --bg-color:#212121;
   --primary-color:#F5C936;
-  --modal-color:#DFDFDF;
-  --modal-color-fail:#E35744;
-  --modal-button-color:#FFFFFF;
-  --modal-button-hover:#EEEEEE;
 }
 
 body{
@@ -31,12 +27,12 @@ body{
   padding: 10px;
   border: 6px solid var(--primary-color);
   transition: all 0.3s ease-out;
+  font-weight: bold;
 }
 
 .button:hover{
   background: var(--primary-color);
   color: var(--bg-color);
-  font-weight: bold;
 }
 
 .input-description{
@@ -62,8 +58,6 @@ input{
   font-weight: 900;
 }
 
-
-
 .title{
   font-size: 3em;
 }
@@ -72,7 +66,7 @@ input{
   width:300px;
 }
 
-#nimCek{
+#nameCheck{
   font-size: 2em;
 }
 
@@ -96,15 +90,15 @@ input{
   align-items: center;
   flex-direction: column;
 
-  background-color: var(--modal-color);
+  background-color: var(--bg-color);
 
   visibility: hidden;
   opacity: 0;
 
   transition: all 0.15s ease-out;
 
-  border: 10px solid #EFA74E;
-  outline: 20px solid var(--modal-color);
+  border: 10px solid var(--primary-color);
+  outline: 20px solid var(--bg-color);
 }
 
 .modal.modal-open{
