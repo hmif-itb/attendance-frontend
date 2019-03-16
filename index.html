@@ -20,30 +20,13 @@
     <a onclick="login();" class="button">Login</a>
   </div>
 
-  <div id="modal-cek" class="modal">
-    <h1 class="modal-title">Cek</h1>
-    <p id="nimCek"></p>
-    <div class="button-holder">
-      <a onclick="closeDialog('cek');" class="modal-button">Salah</a>
-      <a id="button-send" class="modal-button">Benar</a>
-    </div>
-  </div>
-
-  <div id="modal-load" class="modal">
-      <h1 class="modal-title">Mohon tunggu</h1>
-  </div>
-
-  <div id="modal-fail" class="modal">
-    <h1 class="modal-title">Gagal</h1>
-    <a onclick="closeDialog('fail');" class="modal-button">Coba lagi</a>
-  </div>
-
-  <div id="modal-result" class="modal">
-    <h1 class="modal-title">Terdaftarkan</h1>
-    <a onclick="closeDialog('result');" class="modal-button">Oke</a>
+  <div id="modal-notice" class="modal">
+    <h1 class="modal-title" id="noticeText"></h1>
+    <a onclick="closeDialog('notice');" id="noticeBtn" class="button">Oke</a>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" defer></script>
   <script src="js/login.js" defer></script>
+  <script src="js/modal.js" defer></script>
 </body>
 </html>

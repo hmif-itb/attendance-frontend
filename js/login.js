@@ -16,10 +16,17 @@ function login(){
             body: JSON.stringify(postData)
         }).then((val)=>{
             val.json().then((content)=>{
-                if(content.jwt){
-                    sessionStorage.setItem('jwt',content.jwt);
-                    window.location.replace('event.html');
+                if(val.status==200){
+                    if(content.jwt){
+                        sessionStorage.setItem('jwt',content.jwt);
+                        window.location.replace('event.html');
+                    }else{
+                        notice('Unknown error','',false);
+                    }
+                }else{
+                    notice(content.detail,'OK',true);
                 }
+                
             })
         }).catch((err)=>{
             console.error(err);

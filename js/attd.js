@@ -4,24 +4,6 @@ let jwtKey = '';
 
 const NIM_REGEX = /(135|182)[0-9]{5}/;
 
-function closeDialog(modalName){
-  $('#modal-'+modalName).removeClass('modal-open');
-}
-
-function openDialog(modalName){
-  $('#modal-'+modalName).addClass('modal-open');
-}
-
-function notice(message, btnText, dismissable){
-  $('#noticeBtn').text(btnText);
-  $('#noticeBtn').show();
-  $('#noticeText').text(message);
-  if(!dismissable){
-    $('#noticeBtn').hide();
-  }
-  $('#modal-notice').addClass('modal-open');
-}
-
 function send(){
   closeDialog('cek');
   notice('Loading','',false);
