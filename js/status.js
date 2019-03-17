@@ -6,8 +6,8 @@ let lastNim = 0;
 let lastArr = [];
 
 function viewAll(){
-  //notice('Loading','',false);
 
+    $("#listName").html('<div align="center">Loading...</div>')
   let namePromise = [];
 
   lastArr.forEach(el => {

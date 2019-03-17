@@ -2,40 +2,39 @@ let eventId = '';
 let serverUrl = '';
 let jwtKey = '';
 
-let enterAction = ()=>{check();};
 let onAction = false;
 
 let studentExists = false;
 let nimChecked = "";
 
 async function submit() {
-  if(nimChecked === $("#nimInput").val() && nimChecked !== "") {
-      // NIM is checked and not empty
-      if(studentExists) {
-          send();
-      } else {
-          if($("#name").val() !== "") {
-              // Name is not empty
-              if(confirm("A student with name " + $("#name").val() + " will be added to the system. Continue?")) {
-                  // TODO add student
-                  await addStudent($("#name").val(), $("#nimInput").val());
-                  send();
-              }
-          } else {
-              alert("Name cannot be empty");
-          }
-      }
-  } else {
-      // NIM is not checked
-      check();
-  }
+    if(!onAction) {
+        if(nimChecked === $("#nimInput").val() && nimChecked !== "") {
+            // NIM is checked and not empty
+            if(studentExists) {
+                send();
+            } else {
+                if($("#name").val() !== "") {
+                    // Name is not empty
+                    if(confirm("A student with name " + $("#name").val() + " will be added to the system. Continue?")) {
+                        await addStudent($("#name").val(), $("#nimInput").val());
+                        send();
+                    }
+                } else {
+                    alert("Name cannot be empty");
+                }
+            }
+        } else {
+            // NIM is not checked
+            check();
+        }
+    }
 }
 
 function send(){
+    $("#btn-submit").text('Loading...').attr("disabled", "disabled");
     onAction = true;
-    //closeDialogEnter('cek');
     //notice('Loading','',false);
-    //enterAction = ()=>{closeDialogEnter('notice');};
 
     let nimData =  $('#nimInput').val();
     let attendUrl = serverUrl+'/events/'+eventId+'/attend';
@@ -52,6 +51,7 @@ function send(){
         },
         body: JSON.stringify(postData)
     }).then((val)=>{
+        $("#btn-submit").text('Record attendance');
         $('#nimInput').val('');
         $('#name').val('').attr("disabled", "disabled");
         nimChecked = "";
@@ -72,6 +72,7 @@ function send(){
     }).catch((err)=>{
         console.error(err);
         alert(err);
+        $("#btn-submit").text('Record attendance').removeAttr("disabled");
         onAction = false;
     });
 }
