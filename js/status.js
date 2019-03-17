@@ -51,7 +51,13 @@ function updateCount(){
       if(val.status==200){
         lastArr = content;
         $('#attendCount').text(content.length);
-        let tempNim = content.pop();
+        let tempNim = 0;
+        
+        if(content[0]){
+          tempNim = content[0];
+
+        }
+        
         if(lastNim!=tempNim){
           lastNim = tempNim;
   
