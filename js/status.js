@@ -6,7 +6,7 @@ let lastNim = 0;
 let lastArr = [];
 
 function viewAll(){
-  notice('Loading','',false);
+  //notice('Loading','',false);
 
   let namePromise = [];
 
@@ -25,9 +25,9 @@ function viewAll(){
     $('#listName').empty();
     val.forEach(el=>{
       el.json().then((userData)=>{
-        $('#listName').append('<p class="no-margin">'+userData[0].name+'</p>');
-        closeDialog('notice');
-        openDialog('list');
+        $('#listName').append('<li class="list-group-item">'+userData[0].nim+' - ' + userData[0].name+'</li>');
+        //closeDialog('notice');
+        //openDialog('list');
         console.log(userData[0].name);
       });
     });
@@ -106,7 +106,7 @@ $( document ).ready(function() {
         }).then((val)=>{
           val.json().then((content)=>{
             if(val.status==200){
-              $('#eventName').text('Status '+content.name);
+              $('#eventName').text(content.name);
             }
           });
         }).catch((err)=>{

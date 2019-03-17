@@ -5,149 +5,172 @@ let jwtKey = '';
 let enterAction = ()=>{check();};
 let onAction = false;
 
-const NIM_REGEX = /(135|182)[0-9]{5}/;
+let studentExists = false;
+let nimChecked = "";
 
-function closeDialogEnter(name){
-  closeDialog(name);
-  if(!onAction && name=='notice'){
-    enterAction = ()=>{check();};
+async function submit() {
+  if(nimChecked === $("#nimInput").val() && nimChecked !== "") {
+      // NIM is checked and not empty
+      if(studentExists) {
+          send();
+      } else {
+          if($("#name").val() !== "") {
+              // Name is not empty
+              if(confirm("A student with name " + $("#name").val() + " will be added to the system. Continue?")) {
+                  // TODO add student
+                  await addStudent($("#name").val(), $("#nimInput").val());
+                  send();
+              }
+          } else {
+              alert("Name cannot be empty");
+          }
+      }
+  } else {
+      // NIM is not checked
+      check();
   }
 }
 
 function send(){
-  onAction = true;
-  closeDialogEnter('cek');
-  notice('Loading','',false);
-  enterAction = ()=>{closeDialogEnter('notice');};
-  
-  let nimData =  $('#nimInput').val();
-  let attendUrl = serverUrl+'/events/'+eventId+'/attend';
-  
-  let postData = {
-    nim: nimData
-  }
-  
-  fetch(attendUrl,{
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer '+jwtKey, 
-      'Content-Type':'application/JSON'
-    },
-    body: JSON.stringify(postData)
-  }).then((val)=>{
-    closeDialogEnter('notice');
-    if(val.status==200){
-      $('#nimInput').val('');
-      setTimeout(()=>{
-        notice('Sukses','OK',true);
-      },50);
-    }else{
-      setTimeout(()=>{
-        notice(content.detail,'OK',true);
-      },50);
-    }
-    setTimeout(()=>{
-      onAction = false;
-      enterAction = ()=>{
-        closeDialogEnter('notice');
-      };
-    },50);
-  }).catch((err)=>{
-    console.error(err);
-    alert(err);
-    onAction = false;
-  });
+    onAction = true;
+    //closeDialogEnter('cek');
+    //notice('Loading','',false);
+    //enterAction = ()=>{closeDialogEnter('notice');};
+
+    let nimData =  $('#nimInput').val();
+    let attendUrl = serverUrl+'/events/'+eventId+'/attend';
+
+    let postData = {
+        nim: nimData
+    };
+
+    fetch(attendUrl,{
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer '+jwtKey,
+            'Content-Type':'application/JSON'
+        },
+        body: JSON.stringify(postData)
+    }).then((val)=>{
+        $('#nimInput').val('');
+        $('#name').val('').attr("disabled", "disabled");
+        nimChecked = "";
+        studentExists = false;
+
+        if(val.status==200){
+            setTimeout(()=>{
+                alert('Success!');
+            },50);
+        }else{
+            setTimeout(()=>{
+                alert(content.detail);
+            },50);
+        }
+        setTimeout(()=>{
+            onAction = false;
+        },50);
+    }).catch((err)=>{
+        console.error(err);
+        alert(err);
+        onAction = false;
+    });
 }
 
 function check(){
-  onAction = true;
-  let nimData = $('#nimInput').val();
-  
-  if(NIM_REGEX.test(nimData)){
-    notice('Loading','',false);
-    
+    onAction = true;
+    let nimData = $('#nimInput').val();
     let nimUrl = serverUrl + '/students/'+nimData;
-    
-    fetch(nimUrl,{
-      method: 'GET',
-      headers: {
-        'Authorization': 'Bearer '+jwtKey, 
-        'Content-Type':'application/JSON'
-      }
-    }).then((val)=>{
-      val.json().then((content)=>{
-        closeDialogEnter('notice');
-        if(val.status==200){
-          $('#nameCheck').text(content[0].name);
-          openDialog('cek');
-          onAction = false;
-          enterAction = ()=>{send();};
-        }else{
-          setTimeout(()=>{
-            $('#nimInput').val('');
-            onAction = false;
-            notice(content.detail,'OK',true);
-            enterAction = ()=>{closeDialogEnter('notice');};
-          },50);
+
+    $("#btn-submit").attr("disabled", "disabled");
+
+    nimChecked = "";
+    fetch(nimUrl, {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer '+jwtKey,
+            'Content-Type':'application/JSON'
         }
-      });
+    }).then((val)=>{
+        val.json().then((content)=>{
+          nimChecked = nimData;
+            //closeDialogEnter('notice');
+            if(val.status==200){
+                studentExists = true;
+                $('#name').val(content[0].name).attr("disabled", "disabled");
+                $("#btn-submit").removeAttr("disabled");
+                onAction = false;
+                enterAction = ()=>{send();};
+            }else{
+                studentExists = false;
+                setTimeout(()=>{
+                    $('#name').val("").removeAttr("disabled");
+                    $("#btn-submit").removeAttr("disabled");
+
+                    onAction = false;
+                    //notice(content.detail,'OK',true);
+                    //enterAction = ()=>{closeDialogEnter('notice');};
+                },50);
+            }
+        });
     }).catch((err)=>{
-      console.error(err);
-      alert(err);
-      onAction = false;
+        console.error(err);
+        alert(err);
+        onAction = false;
     });
-    
-  }else {
-    onAction = false;
-    notice('Invalid NIM','OK',true);
-    enterAction = ()=>{closeDialogEnter('notice');};
-  };
 }
 
 $( document ).ready(function() {
-  if(localStorage.getItem('serverUrl')){
-    serverUrl = localStorage.getItem('serverUrl');
-    
-    if(sessionStorage.getItem('jwt')){
-      jwtKey = sessionStorage.getItem('jwt');
-      if(window.location.hash.length==21){
-        eventId = window.location.hash.substr(1,20);
-        
-        let eventsUrl = serverUrl + '/events/'+eventId;
-        
-        fetch(eventsUrl,{
-          method: 'GET',
-          headers: {
-            'Authorization': 'Bearer '+jwtKey, 
-            'Content-Type':'application/JSON'
-          }
-        }).then((val)=>{
-          val.json().then((content)=>{
-            if(val.status==200){
-              $('#eventName').text('Pendaftaran '+content.name);
+  $("#btn-submit").on('click', function() {
+    submit();
+  });
+
+    if(localStorage.getItem('serverUrl')){
+        serverUrl = localStorage.getItem('serverUrl');
+
+        if(sessionStorage.getItem('jwt')){
+            jwtKey = sessionStorage.getItem('jwt');
+            if(window.location.hash.length==21){
+                eventId = window.location.hash.substr(1,20);
+
+                let eventsUrl = serverUrl + '/events/'+eventId;
+
+                fetch(eventsUrl,{
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer '+jwtKey,
+                        'Content-Type':'application/JSON'
+                    }
+                }).then((val)=>{
+                    val.json().then((content)=>{
+                        if(val.status==200){
+                            $('#eventName').text(content.name);
+                        }
+                    });
+                }).catch((err)=>{
+                    console.error(err);
+                    alert(err);
+                });
+
+            }else{
+                window.location.replace('/event.html');
             }
-          });
-        }).catch((err)=>{
-          console.error(err);
-          alert(err);
-        });
-        
-      }else{
-        window.location.replace('/event.html');
-      }
+        }else{
+            window.location.replace('/');
+        }
     }else{
-      window.location.replace('/');
+        alert('Error, URL not supplied');
     }
-  }else{
-    alert('Error, URL not supplied');
-  }
 });
 
-$(document).keypress(function(event){
-  let keycode = (event.keyCode ? event.keyCode : event.which);
-  if(keycode == '13'){
-    if(!onAction){
-      enterAction();
-    }
-  }
-});
+async function addStudent(name, nim) {
+    let response = await fetch(serverUrl + '/students', {
+        method: 'POST',
+        body: JSON.stringify({name: name, nim: nim}),
+        headers: {
+            'Authorization': 'Bearer '+jwtKey,
+            'Content-Type':'application/JSON'
+        }
+    });
+
+    return response;
+}

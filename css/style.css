@@ -4,9 +4,9 @@
 }
 
 body{
-  background: var(--bg-color);
+  background: var(--bg-color) !important;
   font-family: 'Roboto', sans-serif;
-  color: var(--primary-color);
+  color: var(--primary-color) !important;
   width:100%;
   height:100%;
   margin:0px;
@@ -24,8 +24,8 @@ body{
 .button{
   cursor: pointer;
   margin: 20px;
-  padding: 10px;
-  border: 6px solid var(--primary-color);
+  padding: 4px 16px 4px 16px;
+  border: 3px solid var(--primary-color);
   transition: all 0.3s ease-out;
   font-weight: bold;
 }
@@ -59,10 +59,11 @@ body{
   margin: 0px;
 }
 
-.logo{
+.logo-abtl {
   position: absolute;
-  left: 10px;
-  right: 10px;
+  left: 16px !important;
+  right: 16px !important;
+  top: 16px !important;
 }
 
 .logo p{
@@ -77,7 +78,7 @@ body{
   min-width: 200px;
 }
 
-.modal{
+/*.modal{
   display: flex;
   position: absolute;
   top: 50%;
@@ -115,7 +116,7 @@ body{
   text-align: center;
   margin: 0px;
   font-size: 3em;
-}
+}*/
 
 .button-holder{
   display: flex;
@@ -123,4 +124,8 @@ body{
   width:100%;
   max-width: 200px;
   justify-content: space-evenly;
+}
+
+.box-container {
+  width: 100%; max-width: 400px;
 }

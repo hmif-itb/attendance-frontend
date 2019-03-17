@@ -3,25 +3,28 @@
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
   <link rel="shortcut icon" type="image/ico" href="img/favicon.ico"/>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,900" rel="stylesheet">
-  <title>Web Registrasi</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <title>Pick an event</title>
 </head>
 <body>
-  <div class="logo">
-    <p><b>#HMIF</b>TECH</p>
-  </div>
-  <div class="container">
-    <h1 class="font-3">Pilih event</h1>
-    <form onsubmit="eventPick();return false;">
-      <p class="text-center font-1-5">Event id</p>
-      <select id="eventId">
 
-      </select>
+  <div class="container">
+    <form class="box-container" onsubmit="eventPick();return false;">
+      <div class="logo">
+        <p><b>#HMIF</b>TECH</p>
+      </div>
+      <h1 class="font-2">Pick an event</h1>
+
+      <div class="form-group">
+        <label for="eventId">Event name</label>
+        <select class="form-control" id="eventId" aria-describedby="emailHelp" placeholder="Username"></select>
+      </div>
+      <button type="submit" class="btn btn-primary">Record attendance</button>
+      <button type="button" class="btn btn-secondary" onclick="eventStatus();">View status</button>
     </form>
-    <div class="button-holder">
-      <a onclick="eventPick();" class="button">Absen</a>
-      <a onclick="eventStatus();" class="button">Status</a>
-    </div>
-  </div>  
+  </div>
 
   <div id="modal-notice" class="modal">
     <h1 class="modal-title" id="noticeText"></h1>
