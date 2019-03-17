@@ -19,7 +19,8 @@ function login(){
                 if(val.status==200){
                     if(content.jwt){
                         sessionStorage.setItem('jwt',content.jwt);
-                        window.location.replace('event.html');
+                        sessionStorage.setItem('jwtTime',new Date().getTime());
+                        window.location.href = 'event.html';
                     }else{
                         notice('Unknown error','',false);
                     }
@@ -37,7 +38,11 @@ function login(){
 }
 
 $( document ).ready(function() {
-    if(sessionStorage.getItem('jwt')){
-        window.location.replace('event.html');
+    if(sessionStorage.getItem('jwtTime')){
+        if(Date.now()-sessionStorage.getItem('jwtTime') > 3600000){
+            sessionStorage.clear();
+        }else{
+            window.location.href = 'event.html';
+        }
     }
 });

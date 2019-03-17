@@ -1,14 +1,14 @@
 function eventPick(){
     let eventId = $('#eventId').val();
     if(eventId){
-        window.location.replace('attd.html#'+eventId);
+        window.location.href = 'attd.html#'+eventId;
     }
 }
 
 function eventStatus(){
     let eventId = $('#eventId').val();
     if(eventId){
-        window.location.replace('status.html#'+eventId);
+        window.location.href = 'status.html#'+eventId;
     }
 }
 
@@ -17,7 +17,7 @@ $( document ).ready(function() {
     let jwtKey = sessionStorage.getItem('jwt');
 
     if(!jwtKey){
-        window.location.replace('/');
+        window.location.href = '/';
     }
 
     let serverUrl = localStorage.getItem('serverUrl');

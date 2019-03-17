@@ -123,10 +123,10 @@ $( document ).ready(function() {
         updateCount();
         
       }else{
-        window.location.replace('/event.html');
+        window.location.href = '/event.html';
       }
     }else{
-      window.location.replace('/');
+      window.location.href = '/' ;
     }
   }else{
     alert('Error, URL not supplied');
