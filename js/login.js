@@ -26,7 +26,6 @@ function login(){
                 }else{
                     notice(content.detail,'OK',true);
                 }
-                
             })
         }).catch((err)=>{
             console.error(err);

@@ -32,6 +32,7 @@ $( document ).ready(function() {
     }).then((val)=>{
         val.json().then((content)=>{
             if(val.status==200){
+                $('#eventId').empty();
                 content.forEach(el => {
                     $('#eventId').append('<option value="'+el.id+'">'+el.name+'</option>');
                 });

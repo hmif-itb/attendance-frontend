@@ -3,36 +3,53 @@
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
   <link rel="shortcut icon" type="image/ico" href="img/favicon.ico"/>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,900" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <title>Registration window</title>
 </head>
 <body>
   <div class="container">
-    <form class="box-container" onsubmit="submit();return false;">
+    <form class="box-container">
       <div class="logo">
         <p><b>#HMIF</b>TECH</p>
       </div>
       <h3 style="font-weight: 200; font-size: 1.2em">Registration for event:</h3>
       <h1 class="font-2" id="eventName">...</h1>
 
-      <div class="form-group" style="margin-top: 24px;">
-        <label for="nimInput">NIM</label>
-        <input class="form-control" id="nimInput" placeholder="NIM" />
+      <p class="no-margin-bottom">NIM</p>
+      <input class="form-input" id="nimInput" placeholder="NIM" />
 
-        <div style="height: 16px"></div>
-
-        <label for="nimInput">Name</label>
-        <input class="form-control" id="name" placeholder="Name" disabled="disabled" />
-      </div>
       <div style="height: 16px"></div>
-      <button type="button" class="btn btn-secondary" id="btn-nim" onclick="check()">Check NIM</button>
-      <button type="submit" class="btn btn-primary" disabled="disabled" id="btn-submit">Record attendance</button>
+      <a type="submit" class="button" id="btn-submit">Record attendance</a>
     </form>
+  </div>
+
+  <div id="modal-cek" class="modal">
+    <h1 class="modal-title">Name</h1>
+    <p id="nameCheck" class="font-2"></p>
+    <div class="button-holder">
+      <a onclick="closeDialogEnter('cek');enterAction=()=>{check();};" class="button">False</a>
+      <a onclick="send();" class="button">Correct</a>
+    </div>
+  </div>
+
+  <div id="modal-name" class="modal">
+    <h1 class="modal-title">Register</h1>
+    <form>
+      <p class="no-margin-bottom">Name</p>
+      <input class="form-input" id="regisName" placeholder="Name"/>
+      <div class="button-holder">
+        <a onclick="closeDialogEnter('name');enterAction=()=>{check();};" class="button">Cancel</a>
+        <a onclick="register();" style="margin-left: 10px;" class="button">Register</a>
+      </div>
+    </form>
+  </div>
+
+  <div id="modal-notice" class="modal">
+    <h1 class="modal-title font-2" id="noticeText"></h1>
+    <a onclick="closeDialogEnter('notice');" id="noticeBtn" style="margin-top: 1em;" class="button">Okay</a>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" defer></script>
   <script src="js/attd.js" defer></script>
+  <script src="js/modal.js" defer></script>
 </body>
 </html>

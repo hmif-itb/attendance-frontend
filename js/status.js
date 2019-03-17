@@ -7,7 +7,9 @@ let lastArr = [];
 
 function viewAll(){
 
-    $("#listName").html('<div align="center">Loading...</div>')
+  openDialog('list');
+
+  $("#listName").html('<div style="margin-top:20px;margin-bottom:20px;" ><b>Loading...</b></div>')
   let namePromise = [];
 
   lastArr.forEach(el => {
@@ -25,9 +27,7 @@ function viewAll(){
     $('#listName').empty();
     val.forEach(el=>{
       el.json().then((userData)=>{
-        $('#listName').append('<li class="list-group-item">'+userData[0].nim+' - ' + userData[0].name+'</li>');
-        //closeDialog('notice');
-        //openDialog('list');
+        $('#listName').append('<li class="list-item">'+userData[0].nim+' - ' + userData[0].name+'</li>');
         console.log(userData[0].name);
       });
     });
