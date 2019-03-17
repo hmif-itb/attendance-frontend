@@ -25,6 +25,12 @@ h1,h3{
   flex-direction: column;
 }
 
+.top-right-abslt{
+  position: absolute;
+  top: 2em;
+  right: 1em;
+}
+
 .button{
   cursor: pointer;
   padding: 10px 16px 10px 16px;
